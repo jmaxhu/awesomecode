@@ -328,6 +328,66 @@ db.Delete(table: "Person", where: "Age = {0}".SqlFmt(27));
 
 # 其它特性
 
+`ServiceStack.OrmLite`中的`SqlExpression`提供了强大的查询构建器的功能。支持分页，分组，联表，排序等SQL提供的一系列功能。
+
+## 分页示例
+
+通过`SqlExpression`可以很简单的实现分页功能。例如：
+
+```csharp
+var builder = db.From<Person>();  //创建一个SqlExpression
+
+builder.Where(x => x.Age > 10);
+//可以添加额外的查询条件
+
+var count = db.Count(builder);  //得到这个查询条件的记录总数
+builder.OrderBy(x => x.Name);   //添加排序
+
+builder.Limit(skip, rows);      //分页参数，skip表示从第几行开始，rows表示返回的记录数
+
+var result = db.Select(builder);   //得到分页结果
+```
+
 ## Join
 
-## 关联
+借助`SqlExpression`同样可以轻松实现Join的功能。
+假设有以下两个类：
+
+```csharp
+class Customer {
+    public int Id { get; set; }
+    ...
+}
+class CustomerAddress {
+    public int Id { get; set; }
+    public int CustomerId { get; set; }   //对应 Customer.Id
+}
+```
+
+如果要取出所有包含客户地址的客户信息列表，可以使用如下语句：
+
+```csharp
+var q = db.From<Customer>().Join<CustomerAddress>();
+
+var dbCustomers = db.Select<Customer>(q);
+```
+
+上面的例子使用了按约定的关联方式。 如： `Customer.Id` 对应 `CustomerAddress.CustomerId`，当然也可以自定义。
+
+```csharp
+var q = db.From<Customer>().Join<Customer,CustomerAddress>((cust,address) => cust.Id == address.CustomerId);
+
+var dbCustomers = db.Select(q);
+```
+
+上面的代码会生成类似如下的SQL语句：
+
+```sql
+SELECT Customer.* 
+  FROM Customer 
+       INNER JOIN 
+       CustomerAddress ON (Customer.Id == CustomerAddress.Id)
+```
+
+`SqlExpression`除了支持`Join`，还支持`LeftJoin`,`RightJoin`,`FullJoin`等其它Join方式。
+
