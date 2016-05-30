@@ -9,7 +9,8 @@ LESSCSS可以在多种语言、环境中使用，包括浏览器端、桌面客�
 ### 变量：
 <h5>变量允许我们单独定义一系列通用的样式，然后在需要的时候去调用。所以在做全局样式调整的时候我们可能只需要修改几行代码就可以了。</h5>
 
-<h5>LESS源码：</h5>
+> LESS源码：
+
 ```
 @color: #4D926F;
 
@@ -20,7 +21,9 @@ h2 {
     color: @color;
 }
 ```
-<h5>编译后的CSS：</h5>
+
+> 编译后的CSS：
+
 ```
 #header {
     color: #4D926F;
@@ -29,9 +32,11 @@ h2 {
     color: #4D926F;
 }
 ```
+
 ### 混合（Mixins）：
 <h5>混合可以将一个定义好的class A轻松的引入到另一个class B中，从而简单实现class B继承class A中的所有属性。我们还可以带参数地调用，就像使用函数一样。</h5>
-<h5>LESS源码：</h5>
+> LESS源码：
+
 ```
 .rounded-corners (@radius: 5px) {
     -webkit-border-radius: @radius;
@@ -48,7 +53,9 @@ h2 {
     .rounded-corners(10px);
 }
 ```
-<h5>编译后的CSS：</h5>
+
+> 编译后的CSS：
+
 ```
 #header {
     -webkit-border-radius: 5px;
@@ -65,9 +72,12 @@ h2 {
     border-radius: 10px;
 }
 ```
-###嵌套:
+
+### 嵌套:
 <h5>我们可以在一个选择器中嵌套另一个选择器来实现继承，这样很大程度减少了代码量，并且代码看起来更加的清晰。</h5>
-<h5>LESS源码：</h5>
+
+> LESS源码：
+
 ```
 #header {
     h1 {
@@ -85,7 +95,8 @@ h2 {
     }
 }
 ```
-<h5>编译后的CSS：</h5>
+> 编译后的CSS：
+
 ```
 #header h1 {
     font-size: 26px;
@@ -101,9 +112,12 @@ h2 {
     border-width: 1px;
 }
 ```
-###函数和运算:
+
+### 函数和运算:
 <h5>运算提供了加，减，乘，除操作；我们可以做属性值和颜色的运算，这样就可以实现属性值之间的复杂关系。LESS中的函数一一映射了JavaScript代码，如果你愿意的话可以操作属性值。</h5>
-<h5>LESS源码：</h5>
+
+> LESS源码：
+
 ```
 @the-border: 1px;
 @base-color: #111;
@@ -119,7 +133,9 @@ h2 {
     border-color: desaturate(@red, 10%);
 }
 ```
-<h5>编译后的CSS：</h5>
+
+> 编译后的CSS：
+
 ```
 #header {
     color: #333;
@@ -132,10 +148,10 @@ h2 {
 }
 ```
 
-###更多语法说明
+### 更多语法说明
 [请看文档](http://www.1024i.com/demo/less/document.html)
 
-###使用说明
+### 使用说明
 
 <h5>Node.js</h5>
 1.安装less库<br/>
