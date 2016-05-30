@@ -148,11 +148,13 @@ lessc example/example.less example/example.css
 ```
 
 <h5>浏览器端使用</h5>
+
 1.下载LESSCSS的.js文件[官网下载地址](http://lesscss.org/#download-options)<br/>
+
 2.在页面中引入.less文件<br/>
-```
-<link rel="stylesheet/less" href="example.less" />
-```
-<br/>3.引入下载的.js文件<br/>
+
+``<link rel="stylesheet/less" href="example.less" />``
+
+3.引入下载的.js文件<br/>
 
 ``<script src="lesscss-1.4.0.min.js"></script>``
