@@ -1,0 +1,35 @@
+.menu{
+  background: #E7F2FF;
+  ul{
+    width: 8*105px;
+    margin: auto;
+    overflow: hidden;
+    li{
+      width: 105px;
+      display: block;
+      text-align: center;
+      color: #353d62;
+      height: 45px;
+      line-height: 45px;
+      font-size: 13px;
+      float: left;
+      a{
+        color: #353d62;
+        text-decoration: none;
+      }
+      &:hover{
+        .active()
+      }
+    }
+    .active{
+      .active()
+    }
+  }
+}
+
+.active(){
+  a{
+    color:#fff;
+  }
+  background: #F9B504;
+}

@@ -1,0 +1,19 @@
+@color: #fff;
+body{
+  background: @color;
+}
+
+.box(@bgcolor:#000){
+  width:100px;
+  height: 100px;
+  background: @bgcolor;
+  margin:20px auto;
+}
+
+#box1{
+  .box(red)
+}
+
+#box2{
+  .box(blue)
+}
